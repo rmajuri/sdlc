@@ -4,11 +4,13 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cards } from "@/data/cards";
 import FlipCard from "./FlipCard";
+import ReferenceDrawer from "./ReferenceDrawer";
 
 export default function CardDeck() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
   const [filter, setFilter] = useState<"all" | "sdlc" | "api">("all");
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const filteredCards = cards.filter(
     (card) => filter === "all" || card.part === filter
@@ -62,24 +64,50 @@ export default function CardDeck() {
                 click to flip
               </p>
             </div>
-            <div className="flex gap-2">
-              {(["all", "sdlc", "api"] as const).map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                    filter === f
-                      ? f === "sdlc"
-                        ? "bg-indigo-500/20 text-indigo-300 ring-1 ring-indigo-500/40"
-                        : f === "api"
-                          ? "bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/40"
-                          : "bg-white/10 text-white ring-1 ring-white/20"
-                      : "text-gray-500 hover:text-gray-300 hover:bg-white/5"
-                  }`}
+            <div className="flex items-center gap-3">
+              <div className="flex gap-2">
+                {(["all", "sdlc", "api"] as const).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                      filter === f
+                        ? f === "sdlc"
+                          ? "bg-indigo-500/20 text-indigo-300 ring-1 ring-indigo-500/40"
+                          : f === "api"
+                            ? "bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/40"
+                            : "bg-white/10 text-white ring-1 ring-white/20"
+                        : "text-gray-500 hover:text-gray-300 hover:bg-white/5"
+                    }`}
+                  >
+                    {f === "all"
+                      ? "All Cards"
+                      : f === "sdlc"
+                        ? "SDLC"
+                        : "API"}
+                  </button>
+                ))}
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-white/10" />
+              <button
+                onClick={() => setDrawerOpen(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-amber-500/15 text-amber-300 ring-1 ring-amber-500/30 hover:bg-amber-500/25 transition-all duration-200"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  {f === "all" ? "All Cards" : f === "sdlc" ? "SDLC" : "API"}
-                </button>
-              ))}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                  />
+                </svg>
+                Technical Appendix
+              </button>
             </div>
           </div>
         </div>
@@ -96,13 +124,15 @@ export default function CardDeck() {
               card.part === "sdlc"
                 ? {
                     gradient: "from-indigo-600 to-violet-700",
-                    border: "border-indigo-500/20 hover:border-indigo-500/40",
+                    border:
+                      "border-indigo-500/20 hover:border-indigo-500/40",
                     badge: "bg-indigo-500/20 text-indigo-300",
                     glow: "hover:shadow-indigo-500/10",
                   }
                 : {
                     gradient: "from-emerald-600 to-teal-700",
-                    border: "border-emerald-500/20 hover:border-emerald-500/40",
+                    border:
+                      "border-emerald-500/20 hover:border-emerald-500/40",
                     badge: "bg-emerald-500/20 text-emerald-300",
                     glow: "hover:shadow-emerald-500/10",
                   };
@@ -180,7 +210,10 @@ export default function CardDeck() {
               <motion.div
                 layoutId={`card-${selectedId}`}
                 className="w-full max-w-2xl h-[80vh] max-h-[700px] pointer-events-auto relative"
-                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
               >
                 <button
                   onClick={(e) => {
@@ -213,6 +246,12 @@ export default function CardDeck() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Technical Appendix Drawer */}
+      <ReferenceDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      />
     </div>
   );
 }
