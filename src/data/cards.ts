@@ -32,6 +32,7 @@ export const cards: CardData[] = [
     backQuestions: [
       "How will we enforce ticket IDs in branch names and pull requests?",
       "Who is responsible for writing the acceptance criteria before work begins?",
+      "With no product manager in the org, who acts as the interim backlog owner, and what work do we pilot the ticket taxonomy on before a product exists?",
     ],
   },
   {
@@ -54,6 +55,7 @@ export const cards: CardData[] = [
     backQuestions: [
       "What is our deployment cadence target?",
       "Can we commit to keeping feature branches alive for less than three days?",
+      "Which repository or pilot project adopts trunk-based development first, and do we have enough developers to review PRs fast enough to keep branches short-lived?",
     ],
   },
   {
@@ -71,6 +73,8 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "Who holds the \"Ready\" gate to prevent requirements drift?",
+      "With no dedicated product management or QA roles, which named person approves \"Ready\" and what satisfies \"In QA\" in the interim?",
+      "What conditions would trigger us to create the dedicated product manager and QA roles this lifecycle assumes?",
     ],
   },
   {
@@ -106,6 +110,8 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "What are our critical paths that will always require two reviewers?",
+      "Given current team size, can we guarantee one non-author reviewer per PR within the review SLA — and what happens when we can't?",
+      "Who maintains CODEOWNERS when code ownership areas don't exist yet?",
     ],
   },
   {
@@ -144,6 +150,8 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "Are we starting with time-boxed sprint releases or moving directly to continuous releases?",
+      "What is the pilot product or service we version and release first, given none exists today?",
+      "Who acts as release manager and approves production promotion while those roles are unfilled?",
     ],
   },
   {
@@ -175,6 +183,7 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "How will we categorize and audit feature flags to prevent technical debt?",
+      "Who provisions and owns the three Azure environments — and who approves that budget — when no platform team or product exists yet?",
     ],
   },
   {
@@ -222,6 +231,8 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "Which checks must actively block a merge versus acting as advisory warnings?",
+      "Who builds and maintains the pipeline itself when no DevOps or platform engineering role exists?",
+      "Without a product to ship, do we stand up the pipeline against a pilot repository first to prove the mechanics end-to-end?",
     ],
   },
   {
@@ -246,6 +257,7 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "Under what conditions do we use the emergency bypass, and who is the named approver?",
+      "The proposal requires \"Director or above\" for bypass approval — who fills that role when no such position exists in this org?",
     ],
   },
   {
@@ -266,6 +278,7 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "Are we culturally committed to never breaking a published contract once it ships?",
+      "With no API consumers today, at what moment does the contract freeze take effect — first published spec, first internal consumer, or first external partner?",
     ],
   },
   {
@@ -306,6 +319,8 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "What is our official support window for major and minor API versions before they are retired?",
+      "Is a three-year major support window realistic for a team this size, with no support function to backport fixes or manage consumer migrations?",
+      "Who communicates deprecations and tracks consumer migration when no consumer-facing role exists?",
     ],
   },
   {
@@ -321,6 +336,7 @@ export const cards: CardData[] = [
     backQuestions: [
       "How will leadership ensure the breaking-change CI gate is not overridden under pressure?",
       "Are we prepared to say \"no\" to expedient fixes that break published v1 contracts?",
+      "Who specifically is \"engineering leadership\" for this purpose today — which named person provides the air cover this commitment depends on?",
     ],
   },
 ];

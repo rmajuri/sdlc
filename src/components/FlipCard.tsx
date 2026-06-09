@@ -148,12 +148,12 @@ export default function FlipCard({ card, isFlipped, onFlip }: FlipCardProps) {
               {card.title}
             </h3>
 
-            <div className="flex-1 flex flex-col justify-center">
-              <div className="space-y-6">
+            <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">
+              <div className="space-y-4 my-auto">
                 {card.backQuestions.map((question, i) => (
                   <div
                     key={i}
-                    className={`p-5 rounded-xl ${colors.accent} border ${colors.border}`}
+                    className={`p-4 md:p-5 rounded-xl ${colors.accent} border ${colors.border}`}
                   >
                     <div className="flex items-start gap-4">
                       <span
@@ -161,7 +161,7 @@ export default function FlipCard({ card, isFlipped, onFlip }: FlipCardProps) {
                       >
                         {i + 1}
                       </span>
-                      <p className="text-base md:text-lg text-white leading-relaxed font-medium">
+                      <p className="text-sm md:text-base text-white leading-relaxed font-medium">
                         {question}
                       </p>
                     </div>
