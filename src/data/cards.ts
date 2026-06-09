@@ -257,7 +257,6 @@ export const cards: CardData[] = [
     ],
     backQuestions: [
       "Under what conditions do we use the emergency bypass, and who is the named approver?",
-      "The proposal requires \"Director or above\" for bypass approval — who fills that role when no such position exists in this org?",
     ],
   },
   {
